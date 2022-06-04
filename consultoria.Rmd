@@ -1,0 +1,88 @@
+---
+title: "relatatório atividade 1 consultoria"
+author: "joseferson da silva barreto"
+date: '2022-06-02'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#  Análise Descritiva
+
+
+Antes de qualquer coisa  vamos executar uma análise  exploratória  dos nossos  dados,
+verificar os tipos de variáveis e suas correlações , para este propósito vamos utilizar a
+biblioteca **sweetviz**  que nos fornece  uma rápida descrição dos dados 
+
+
+## Carregando Nosso banco de Dados em Python    
+
+ Para o carregamento dos dados vamos utilizar o pacote **pandas**  chamando a função **Read_csv**
+ que recebe o argumento **sep =**   que no nosso caso está separado por ponto e virgula .
+ 
+ 
+```{python}
+import pandas as pd
+import numpy as np
+
+pdados=pd.read_csv("dados.csv")
+```
+
+
+```{r,message=FALSE,warning=FALSE}
+library(reticulate)
+
+#dedo<-read.csv("dados.csv",sep = ",")
+#py_install('sweetviz')
+```
+
+
+ Agora iremos utlizar a  biblioteca   **sweetviz**  ,mas para isso teremos que
+ carregar alguns complementos abaixo 
+
+
+```{python,message=FALSE,warning=FALSE}
+import sweetviz as sv
+from IPython.core.display import HTML
+from IPython.display import IFrame
+
+analyze = sv.analyze(pdados)
+```
+
+
+```{python,message=FALSE,warning=FALSE}
+analyze.show_html('analyze.html',open_browser=False)
+
+#analyze.show_notebook('analyze.html')
+
+```
+<iframe src="file:///C:/Users/joseferson/Documents/joseferson%20barreto/atividade-culsultoria-primeira/analyze.html" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
+
+
+
+```{python}
+IFrame(src="./analyze.html", width=900, height=640)
+
+#IFrame(analyze.show_html('analyze.html', open_browser=False),width = 500,height =500)
+
+
+```
+
+
+
+```{r}
+# Primeiro pacote: dataMaid
+#library(dataMaid)
+#dados<-py$pdados
+#dataMaid::makeDataReport(dados, output = "HTML")
+
+knitr::include_url("./analyze.html")
+```
+
+
+
+
+
+
